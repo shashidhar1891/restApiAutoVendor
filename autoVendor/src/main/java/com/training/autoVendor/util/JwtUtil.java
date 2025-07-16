@@ -20,7 +20,6 @@ public class JwtUtil {
                 .setIssuer("myTraining.com")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
-                .claim("ROLE", "ADMIN")
                 .signWith(key)
                 .compact();
     }

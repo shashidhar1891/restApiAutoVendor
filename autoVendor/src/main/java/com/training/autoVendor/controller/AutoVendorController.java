@@ -46,7 +46,6 @@ public class AutoVendorController {
     }
 
     @PostMapping("/createAutoVendor")
-    @PreAuthorize("'hasrole ('ADMIN)")
     public String createAutoVendorDetails(@RequestBody AutoVendor autoVendor) {
             autoVendorService.createAutoVendor(autoVendor);
             return "Auto Vendor Created Successfully";
