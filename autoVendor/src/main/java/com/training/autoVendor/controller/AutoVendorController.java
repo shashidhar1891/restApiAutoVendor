@@ -1,8 +1,11 @@
 package com.training.autoVendor.controller;
 
+import com.training.autoVendor.exception.AutoVendorNotFoundException;
 import com.training.autoVendor.model.AutoVendor;
 import com.training.autoVendor.service.AutoVendorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +34,9 @@ public class AutoVendorController {
 
     @GetMapping("/getAutoName")
     public List<AutoVendor> getByautoName(@RequestParam (name = "autoName") String autoName) {
+        if(autoVendorService.getByautoName(autoName).isEmpty()){
+            throw new AutoVendorNotFoundException("Vendor with Auto name : " + autoName + " not found");
+        }
         return autoVendorService.getByautoName(autoName);
     }
 
@@ -40,6 +46,7 @@ public class AutoVendorController {
     }
 
     @PostMapping("/createAutoVendor")
+    @PreAuthorize("'hasrole ('ADMIN)")
     public String createAutoVendorDetails(@RequestBody AutoVendor autoVendor) {
             autoVendorService.createAutoVendor(autoVendor);
             return "Auto Vendor Created Successfully";

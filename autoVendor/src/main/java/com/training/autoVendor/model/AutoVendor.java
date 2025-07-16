@@ -1,5 +1,6 @@
 package com.training.autoVendor.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class AutoVendor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(hidden = true)
     @NonNull
     private Long autoId;
 
@@ -28,9 +30,11 @@ public class AutoVendor {
 
     @CreationTimestamp
     @Column(updatable = false)
+    @Schema(hidden = true)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
+    @Schema(hidden = true)
     private LocalDateTime updatedAt;
 
 }

@@ -14,15 +14,14 @@ spring:
   #JPA Settings
   jpa.hibernate.ddl_auto: update
 
-
-#management:
-#  info:
-#    java:
-#      enabled: true
-#    env:
-#      enabled: true
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
+management:
+  info:
+    java:
+      enabled: true
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
